@@ -2,11 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.staysafe">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -22,11 +28,10 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AlertActivity"></activity>
+        <activity android:name=".AlertActivity" />
 
         <!-- Services -->
 
@@ -40,12 +45,45 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        
+
         <receiver android:name=".receivers.PanicReceiver">
             <intent-filter>
                 <action android:name="com.example.staysafe.AlertActivity" />
             </intent-filter>
         </receiver>
+
+        <!-- Here maps integration -->
+        <!--
+         Developers should put application credentials here.To obtain them, please register the application
+         at https://developer.here.com/develop/mobile-sdks
+        -->
+        <meta-data
+            android:name="com.here.android.maps.appid"
+            android:value="rM5dYE0mt5N1XyaaTsJw" />
+        <meta-data
+            android:name="com.here.android.maps.apptoken"
+            android:value="bnIEzkbxNYLTj0fhU_6irQ" />
+        <meta-data
+            android:name="com.here.android.maps.license.key"
+            android:value="Zp2H2mVLw+paaANAs/aYAl6VbF3Uy2dOMilwEGnsL2h5omo4e/9D94Co5thtTUhiShn9Utmbj0BSgkxa3OA9AjZXtk4LKgwBfBc4FLDDEmOhPexqlLnhVM5dRRDDMagQyHfvKoth/AYgb5HRtxp9uAc9M9d/AVSspevehzt7HQBp2fUHMTafYtGny/zA8Xkjxu5f/5nIb8NmhEif1QuIE3mI0fItDbYM6aWjpE/QDGZGPQ8psNHFKCqpC903CnBds15aNU+DT+broI6L1og+rBlE3fa9CUc1owkP3tMb7e1Ux4YMNv6lc/m/TIAAIYaEduxAzmc/NaQzVLYvULEU2U6eE5BXMhqvv0HGnodwCwWLdp9ck1owANM75s9mtam8v5k1yGu+BiHaqR7LXxow7AeJTfXcXCohpy7cAXEu/w+gl3YW5jt1tJ4WhUX2hBKhOR3LF8L1Nxqu2Z/FmeQWaPQAuB5SGrcjIf9Xr0Tzc0obkZqj/b6khiQDvE47nqFjPRaI3hMCKe44uNAR4JwGEsZ67LefuMTO5WBu6ZkxvaYNcm559+oFKRwOvdSGQv7K81HFBCJpo/sF84D1/b4bpvNufvhjzStqDLIKcUF+VFHWyVlocWwe0pU9q2Ol6bK+svjE/LrneZy9fytWuLvPGNCPdrEZM+QH9pNY+5lyx3s=" />
+
+        <!--
+        Developers should always provide custom values for each of {YOUR_LABEL_NAME} and {YOUR_INTENT_NAME}.
+        Do not reuse HERE SDK defaults.
+        -->
+        <meta-data
+            android:name="INTENT_NAME"
+            android:value="HERE_MAP_INTENT" />
+
+        <service
+            android:name="com.here.android.mpa.service.MapService"
+            android:exported="false"
+            android:label="HERE_MAP_LABEL">
+            <intent-filter>
+                <action android:name="HERE_MAP_INTENT" />
+            </intent-filter>
+            >
+        </service>
 
     </application>
 

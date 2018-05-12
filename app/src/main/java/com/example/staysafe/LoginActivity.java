@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                         return;
                     }
                     User user = userAuth.getUser();
-                    sessionManager.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getMpin(), user.getDob(), user.getContactNo(), user.getGender(), user.getFbaseToken());
+                    sessionManager.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getMpin(), user.getDob(), user.getContactNo(), user.getGender(), user.getFbaseToken(), user.getGuardianId());
                     Intent intent = new Intent(getBaseContext(), NavDrawerActivity.class);
                     finish();
                     startActivity(intent);

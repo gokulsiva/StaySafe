@@ -142,7 +142,7 @@ public class FragmentDependents extends Fragment{
         progressDialog.dismiss();
     }
 
-    private void updateGuardianId(String userId, String guardianId){
+    private void updateGuardianId(String userId, final String guardianId){
         progressDialog.show();
         generalReqCall = mAPIService.updateGuardianId(userId, guardianId);
         generalReqCall.enqueue(new Callback<GeneralReq>() {
@@ -151,6 +151,7 @@ public class FragmentDependents extends Fragment{
                 if (response.isSuccessful()){
                     GeneralReq req = response.body();
                     if (req.getStatus().equalsIgnoreCase("success")){
+                        sessionManager.updateGuardianId(guardianId);
                         Toast.makeText(getContext(), req.getMsg(), Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getContext(), "Guardian updation failed.", Toast.LENGTH_LONG).show();

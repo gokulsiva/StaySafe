@@ -29,6 +29,9 @@ public class User {
     @SerializedName("fbaseToken")
     @Expose
     private String fbaseToken;
+    @SerializedName("guardianId")
+    @Expose
+    private String guardianId;
 
     public String getId() {
         return id;
@@ -93,5 +96,14 @@ public class User {
     public void setFbaseToken(String fbaseToken) {
         this.fbaseToken = fbaseToken;
     }
+
+    public String getGuardianId() {
+        return guardianId;
+    }
+
+    public void setGuardianId(String guardianId) {
+        this.guardianId = guardianId;
+    }
+
 
 }

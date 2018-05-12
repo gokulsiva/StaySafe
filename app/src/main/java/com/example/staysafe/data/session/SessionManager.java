@@ -25,6 +25,7 @@ public class SessionManager {
     public long contact_no= 0;
     public String gender="";
     public String fbaseToken="";
+    public String guardianId="";
 
     SharedPreferences pref;
 
@@ -48,6 +49,7 @@ public class SessionManager {
     public static final String KEY_CONTACT_NO = "contact_no";
     public static final String KEY_GENDER = "gender";
     public static final String KEY_FBASE_TOKEN = "fbaseToken";
+    public static final String KEY_GUARDIAN_ID = "guardianId";
 
 
     // Constructor
@@ -59,7 +61,7 @@ public class SessionManager {
     }
 
     //Create Login Session
-    public void createLoginSession(String id, String name, String email, String mpin, String dob, long contact_no, String gender, String fbaseToken){
+    public void createLoginSession(String id, String name, String email, String mpin, String dob, long contact_no, String gender, String fbaseToken, String guardianId){
 
         // Storing values in prefs
         editor.putBoolean(IS_LOGIN, true);
@@ -71,6 +73,7 @@ public class SessionManager {
         editor.putLong(KEY_CONTACT_NO, contact_no);
         editor.putString(KEY_GENDER, gender);
         editor.putString(KEY_FBASE_TOKEN, fbaseToken);
+        editor.putString(KEY_GUARDIAN_ID, guardianId);
         // commit changes
         editor.commit();
         userDetails();
@@ -86,12 +89,19 @@ public class SessionManager {
         contact_no = pref.getLong(KEY_CONTACT_NO,0);
         gender = pref.getString(KEY_GENDER,"");
         fbaseToken = pref.getString(KEY_FBASE_TOKEN,"");
+        guardianId = pref.getString(KEY_GUARDIAN_ID,"");
     }
 
     public void updateFbaseToken(String fbaseToken){
         editor.putString(KEY_FBASE_TOKEN, fbaseToken);
         editor.commit();
         this.fbaseToken = fbaseToken;
+    }
+
+    public void updateGuardianId(String guardianId){
+        editor.putString(KEY_GUARDIAN_ID, guardianId);
+        editor.commit();
+        this.guardianId = guardianId;
     }
 
 
@@ -117,6 +127,7 @@ public class SessionManager {
         contact_no = 0;
         gender = "";
         fbaseToken = "";
+        guardianId = "";
     }
 
     /**
@@ -156,6 +167,10 @@ public class SessionManager {
 
     public String getMpin() {
         return mpin;
+    }
+
+    public String getGuardianId() {
+        return guardianId;
     }
 }
 
