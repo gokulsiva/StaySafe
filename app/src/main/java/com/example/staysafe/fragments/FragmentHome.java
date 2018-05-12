@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.staysafe.MapFragmentView;
 import com.example.staysafe.NavDrawerActivity;
@@ -18,6 +19,9 @@ public class FragmentHome extends Fragment {
 
     private MapFragmentView m_mapFragmentView;
     private View view;
+
+    private Button dangerBtn;
+    private Button alertBtn;
 
 
     @Nullable
@@ -33,6 +37,14 @@ public class FragmentHome extends Fragment {
             Intent intent = new Intent(getContext(), NavDrawerActivity.class);
             startActivity(intent);
         }
+        dangerBtn = view.findViewById(R.id.dangerButton);
+        alertBtn = view.findViewById(R.id.alertButton);
+        dangerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return view;
     }
 

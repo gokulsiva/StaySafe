@@ -18,7 +18,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/alertButton"
             android:layout_width="170dp"
             android:layout_height="43dp"
             android:layout_alignParentStart="true"
@@ -31,7 +31,7 @@
             android:text="Alert"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintEnd_toStartOf="@+id/dangerButton"
             app:layout_constraintHorizontal_bias="0.193"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +39,7 @@
 
         <Button
 
-            android:id="@+id/button"
+            android:id="@+id/dangerButton"
             android:layout_width="170dp"
             android:layout_height="43dp"
             android:layout_alignParentEnd="true"
@@ -53,7 +53,7 @@
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintStart_toEndOf="@+id/alertButton"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
