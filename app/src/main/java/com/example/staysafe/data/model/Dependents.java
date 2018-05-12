@@ -3,7 +3,9 @@ package com.example.staysafe.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserAuth {
+import java.util.List;
+
+public class Dependents {
 
     @SerializedName("status")
     @Expose
@@ -11,9 +13,9 @@ public class UserAuth {
     @SerializedName("msg")
     @Expose
     private String msg;
-    @SerializedName("user")
+    @SerializedName("dependents")
     @Expose
-    private User user;
+    private List<User> users = null;
 
     public String getStatus() {
         return status;
@@ -31,12 +33,13 @@ public class UserAuth {
         this.msg = msg;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
+
 
 }

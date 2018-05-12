@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,6 +25,7 @@ import com.example.staysafe.data.model.FbaseToken;
 import com.example.staysafe.data.remote.APIService;
 import com.example.staysafe.data.remote.ApiUtils;
 import com.example.staysafe.data.session.SessionManager;
+import com.example.staysafe.fragments.FragmentDependents;
 import com.example.staysafe.fragments.FragmentHome;
 import com.example.staysafe.fragments.FragmentProfile;
 import com.google.firebase.FirebaseApp;
@@ -133,7 +135,14 @@ public class NavDrawerActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            int count = getFragmentManager().getBackStackEntryCount();
+            if (count == 0) {
+                super.onBackPressed();
+            } else {
+                getFragmentManager().popBackStack();
+            }
+
         }
     }
 
@@ -179,6 +188,9 @@ public class NavDrawerActivity extends AppCompatActivity
             case R.id.nav_profile:
                 fragment = new FragmentProfile();
                 break;
+            case R.id.nav_dependents:
+                fragment = new FragmentDependents();
+                break;
         }
 
         if (fragment != null){
@@ -211,7 +223,6 @@ public class NavDrawerActivity extends AppCompatActivity
                         if(operation.equalsIgnoreCase("logout")){
                             sessionManager.clearUserDetails();
                             unregisterReceiver(panicReceiver);
-                            unregisterReceiver(panicReceiver);
                             Intent intent = new Intent(getBaseContext(), NavDrawerActivity.class);
                             finish();
                             startActivity(intent);
@@ -229,6 +240,24 @@ public class NavDrawerActivity extends AppCompatActivity
                 progressDialog.dismiss();
             }
         });
+    }
+
+    private FragmentManager.OnBackStackChangedListener getListener() {
+        FragmentManager.OnBackStackChangedListener result = new FragmentManager.OnBackStackChangedListener() {
+            public void onBackStackChanged() {
+                FragmentManager manager = getSupportFragmentManager();
+                if (manager != null) {
+                    int backStackEntryCount = manager.getBackStackEntryCount();
+                    if (backStackEntryCount == 0) {
+                        finish();
+                    }
+                    Fragment fragment = manager.getFragments()
+                            .get(backStackEntryCount - 1);
+                    fragment.onResume();
+                }
+            }
+        };
+        return result;
     }
 
 }

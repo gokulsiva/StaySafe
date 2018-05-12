@@ -31,7 +31,6 @@ public class AlertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alert);
         sessionManager = new SessionManager(getApplicationContext());
-        sessionManager.userDetails();
         sessionMPin = sessionManager.getMpin();
         countDownTimerView = findViewById(R.id.countDownTimer);
         alertMpin = findViewById(R.id.alertMpin);

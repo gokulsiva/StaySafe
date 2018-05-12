@@ -1,6 +1,8 @@
 package com.example.staysafe.data.remote;
 
+import com.example.staysafe.data.model.Dependents;
 import com.example.staysafe.data.model.FbaseToken;
+import com.example.staysafe.data.model.GeneralReq;
 import com.example.staysafe.data.model.UserAuth;
 import com.example.staysafe.data.model.UserSignUp;
 
@@ -22,4 +24,16 @@ public interface APIService {
     @POST("/user/updateFbaseToken")
     @FormUrlEncoded
     Call<FbaseToken> updateFbaseToken(@Field("id") String id, @Field("fbaseToken") String fbaseToken);
+
+    @POST("/dependent/create")
+    @FormUrlEncoded
+    Call<GeneralReq> addDependents(@Field("userId") String userId, @Field("dependentId") String dependentId);
+
+    @POST("/dependent/list")
+    @FormUrlEncoded
+    Call<Dependents> getDependents(@Field("userId") String userId);
+
+    @POST("/user/updateGuardianId")
+    @FormUrlEncoded
+    Call<GeneralReq> updateGuardianId(@Field("userId") String userId, @Field("guardianId") String guardianId);
 }

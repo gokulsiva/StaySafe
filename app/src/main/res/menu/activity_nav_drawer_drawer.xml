@@ -11,8 +11,8 @@
             android:id="@+id/nav_profile"
             android:title="@string/nav_profile"/>
         <item
-            android:id="@+id/nav_menu3"
-            android:title="Menu 3"/>
+            android:id="@+id/nav_dependents"
+            android:title="Dependents"/>
         <item
             android:id="@+id/nav_menu4"
             android:title="Menu 4"/>
