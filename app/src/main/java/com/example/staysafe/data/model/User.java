@@ -19,10 +19,16 @@ public class User {
     private String dob;
     @SerializedName("contact_no")
     @Expose
-    private long contactNo;
+    private Integer contactNo;
     @SerializedName("gender")
     @Expose
     private String gender;
+    @SerializedName("fbaseToken")
+    @Expose
+    private String fbaseToken;
+    @SerializedName("mpin")
+    @Expose
+    private String mpin;
 
     public String getId() {
         return id;
@@ -56,11 +62,11 @@ public class User {
         this.dob = dob;
     }
 
-    public long getContactNo() {
+    public Integer getContactNo() {
         return contactNo;
     }
 
-    public void setContactNo(long contactNo) {
+    public void setContactNo(Integer contactNo) {
         this.contactNo = contactNo;
     }
 
@@ -70,6 +76,22 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getFbaseToken() {
+        return fbaseToken;
+    }
+
+    public void setFbaseToken(String fbaseToken) {
+        this.fbaseToken = fbaseToken;
+    }
+
+    public String getMpin() {
+        return mpin;
+    }
+
+    public void setMpin(String mpin) {
+        this.mpin = mpin;
     }
 
     @Override

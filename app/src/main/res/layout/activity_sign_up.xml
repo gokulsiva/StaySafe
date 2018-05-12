@@ -6,17 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
-
     <EditText
         android:id="@+id/signup_name"
         android:layout_width="289dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="Name"
-        android:inputType="textPersonName"/>
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/signup_email"
@@ -24,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="86dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress" />
@@ -35,19 +34,33 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="144dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/signup_confirm_password"
         android:layout_width="283dp"
         android:layout_height="39dp"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="199dp"
         android:ems="10"
         android:hint="Confirm Password"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/signup_mpin"
+        android:layout_width="284dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="219dp"
+        android:ems="10"
+        android:maxLength="4"
+        android:hint="Enter 4 digit pin"
+        android:inputType="numberPassword" />
 
     <RadioGroup
         android:id="@+id/signup_genderGrp"
@@ -55,7 +68,7 @@
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="184dp"
+        android:layout_marginBottom="163dp"
         android:checkedButton="@id/male"
         android:orientation="horizontal">
 
@@ -78,9 +91,9 @@
         android:layout_height="39dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="126dp"
+        android:layout_marginBottom="112dp"
         android:ems="10"
-        android:hint="Date of Birth (MM-DD-YYYY)"/>
+        android:hint="Date of Birth (MM-DD-YYYY)" />
 
     <EditText
         android:id="@+id/signup_contact_no"
@@ -88,10 +101,10 @@
         android:layout_height="42dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="65dp"
+        android:layout_marginBottom="58dp"
         android:ems="10"
         android:hint="Contact Number"
-        android:inputType="phone"/>
+        android:inputType="phone" />
 
     <Button
         android:id="@+id/signup_Btn"

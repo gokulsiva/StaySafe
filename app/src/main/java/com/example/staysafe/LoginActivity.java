@@ -11,11 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.staysafe.data.model.FbaseToken;
 import com.example.staysafe.data.model.User;
 import com.example.staysafe.data.model.UserAuth;
 import com.example.staysafe.data.remote.APIService;
 import com.example.staysafe.data.remote.ApiUtils;
 import com.example.staysafe.data.session.SessionManager;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -95,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                         return;
                     }
                     User user = userAuth.getUser();
-                    sessionManager.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getDob(), user.getContactNo(), user.getGender());
+                    sessionManager.createLoginSession(user.getId(), user.getName(), user.getEmail(), user.getMpin(), user.getDob(), user.getContactNo(), user.getGender(), user.getFbaseToken());
                     Intent intent = new Intent(getBaseContext(), NavDrawerActivity.class);
                     finish();
                     startActivity(intent);

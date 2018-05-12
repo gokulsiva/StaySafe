@@ -1,17 +1,30 @@
 package com.example.staysafe.data.session;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.widget.Toast;
+
+import com.example.staysafe.data.model.FbaseToken;
+import com.example.staysafe.data.remote.APIService;
+import com.example.staysafe.data.remote.ApiUtils;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SessionManager {
 
     public String id="";
     public String name="";
     public String email="";
+    public String mpin="";
     public String dob="";
     public long contact_no= 0;
     public String gender="";
+    public String fbaseToken="";
 
     SharedPreferences pref;
 
@@ -30,9 +43,12 @@ public class SessionManager {
     public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
+    public static final String KEY_MPIN = "mpin";
     public static final String KEY_DOB = "dob";
     public static final String KEY_CONTACT_NO = "contact_no";
     public static final String KEY_GENDER = "gender";
+    public static final String KEY_FBASE_TOKEN = "fbaseToken";
+
 
     // Constructor
     public SessionManager(Context context) {
@@ -42,16 +58,18 @@ public class SessionManager {
     }
 
     //Create Login Session
-    public void createLoginSession(String id, String name, String email, String dob, long contact_no, String gender){
+    public void createLoginSession(String id, String name, String email, String mpin, String dob, long contact_no, String gender, String fbaseToken){
 
         // Storing values in prefs
         editor.putBoolean(IS_LOGIN, true);
         editor.putString(KEY_ID, id);
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_EMAIL, email);
+        editor.putString(KEY_MPIN, mpin);
         editor.putString(KEY_DOB, dob);
         editor.putLong(KEY_CONTACT_NO, contact_no);
         editor.putString(KEY_GENDER, gender);
+        editor.putString(KEY_FBASE_TOKEN, fbaseToken);
         // commit changes
         editor.commit();
         userDetails();
@@ -62,16 +80,28 @@ public class SessionManager {
         id = pref.getString(KEY_ID, "");
         name = pref.getString(KEY_NAME,"");
         email = pref.getString(KEY_EMAIL,"");
+        mpin = pref.getString(KEY_MPIN, "");
         dob = pref.getString(KEY_DOB,"");
         contact_no = pref.getLong(KEY_CONTACT_NO,0);
         gender = pref.getString(KEY_GENDER,"");
+        fbaseToken = pref.getString(KEY_FBASE_TOKEN,"");
     }
+
+    public void updateFbaseToken(String fbaseToken){
+        editor.putString(KEY_FBASE_TOKEN, fbaseToken);
+        editor.commit();
+        this.fbaseToken = fbaseToken;
+    }
+
 
     /**
      * Clear session details
      * */
     public void logoutUser(){
+        clearUserDetails();
+    }
 
+    public void clearUserDetails(){
         // Clearing all data from Shared Preferences
         editor.clear();
         editor.putBoolean(IS_LOGIN, false);
@@ -81,9 +111,11 @@ public class SessionManager {
         id = "";
         name = "";
         email = "";
+        mpin = "";
         dob = "";
         contact_no = 0;
         gender = "";
+        fbaseToken = "";
     }
 
     /**
@@ -117,6 +149,12 @@ public class SessionManager {
 
     public String getGender() {
         return gender;
+    }
+
+    public String getFbaseToken() { return fbaseToken; }
+
+    public String getMpin() {
+        return mpin;
     }
 }
 

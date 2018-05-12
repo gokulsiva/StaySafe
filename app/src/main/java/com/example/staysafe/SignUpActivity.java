@@ -34,6 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText confirm_password;
     private RadioGroup gender;
     private EditText dob;
+    private EditText mpin;
     private EditText contact_no;
     private Button signup;
     private ProgressDialog progressDialog;
@@ -48,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
         email = findViewById(R.id.signup_email);
         password = findViewById(R.id.signup_password);
         confirm_password = findViewById(R.id.signup_confirm_password);
+        mpin = findViewById(R.id.signup_mpin);
         gender = findViewById(R.id.signup_genderGrp);
         dob = findViewById(R.id.signup_dob);
         contact_no = findViewById(R.id.signup_contact_no);
@@ -78,27 +80,28 @@ public class SignUpActivity extends AppCompatActivity {
         String signUpEmail = email.getText().toString().trim();
         String signUpPass = password.getText().toString().trim();
         String signUpCnfPass = confirm_password.getText().toString().trim();
+        String signUpMpin = mpin.getText().toString().trim();
         String signUpGender = (String) ((RadioButton) findViewById(gender.getCheckedRadioButtonId())).getText();
         String signUpDOB = dob.getText().toString().trim();
         String signUpContact = contact_no.getText().toString().trim();
 
-        String validation = isValidArguments(signUpName, signUpEmail, signUpPass, signUpCnfPass, signUpGender, signUpDOB, signUpContact);
+        String validation = isValidArguments(signUpName, signUpEmail, signUpPass, signUpCnfPass, signUpMpin, signUpGender, signUpDOB, signUpContact);
         if (validation.equalsIgnoreCase("valid")){
             progressDialog.show();
-            signUp(signUpName, signUpEmail, signUpPass, signUpGender, signUpDOB, signUpContact);
+            signUp(signUpName, signUpEmail, signUpPass, signUpMpin, signUpGender, signUpDOB, signUpContact);
         } else {
             Toast.makeText(getBaseContext(), validation, Toast.LENGTH_LONG).show();
         }
 
     }
 
-    public String isValidArguments(String name, String email, String pass, String cnfPass, String gender, String dob, String contactNo){
+    public String isValidArguments(String name, String email, String pass, String cnfPass, String mpin, String gender, String dob, String contactNo){
 
         if (!pass.equals(cnfPass)){
             return "invalid_pass_not_match";
         }
 
-        if (name.equals("") || email.equals("") || pass.equals("") || cnfPass.equals("") || gender.equals("") || dob.equals("") || contactNo.equals("")){
+        if (name.equals("") || email.equals("") || pass.equals("") || cnfPass.equals("") || mpin.equals("") || gender.equals("") || dob.equals("") || contactNo.equals("")){
             return "invalid_fields";
         }
         try {
@@ -120,8 +123,8 @@ public class SignUpActivity extends AppCompatActivity {
         return "valid";
     }
 
-    public void signUp(String name, final String email, String pass, String gender, String dob, String contactNo){
-        signUpUserCall = mAPIService.signUpUser(name, email, pass, gender, dob, contactNo);
+    public void signUp(String name, final String email, String pass, String mpin, String gender, String dob, String contactNo){
+        signUpUserCall = mAPIService.signUpUser(name, email, pass, mpin, gender, dob, contactNo);
         signUpUserCall.enqueue(new Callback<UserSignUp>() {
             @Override
             public void onResponse(Call<UserSignUp> call, Response<UserSignUp> response) {

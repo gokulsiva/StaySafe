@@ -1,5 +1,6 @@
 package com.example.staysafe.data.remote;
 
+import com.example.staysafe.data.model.FbaseToken;
 import com.example.staysafe.data.model.UserAuth;
 import com.example.staysafe.data.model.UserSignUp;
 
@@ -16,5 +17,9 @@ public interface APIService {
 
     @POST("/user/create")
     @FormUrlEncoded
-    Call<UserSignUp> signUpUser(@Field("name") String name, @Field("email") String email, @Field("password") String password, @Field("gender") String gender, @Field("dob") String dob, @Field("contact_no") String contact_no);
+    Call<UserSignUp> signUpUser(@Field("name") String name, @Field("email") String email, @Field("password") String password, @Field("mpin") String mpin, @Field("gender") String gender, @Field("dob") String dob, @Field("contact_no") String contact_no);
+
+    @POST("/user/updateFbaseToken")
+    @FormUrlEncoded
+    Call<FbaseToken> updateFbaseToken(@Field("id") String id, @Field("fbaseToken") String fbaseToken);
 }

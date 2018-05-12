@@ -31,4 +31,12 @@
     <string name="logout">Logout</string>
     <string name="nav_home">Home</string>
     <string name="nav_profile">Profile</string>
+
+
+    <string name="default_notification_channel_id" translatable="false">staySafeChannelId</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">staySafeChannel</string>
 </resources>
